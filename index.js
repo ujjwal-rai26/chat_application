@@ -10,13 +10,10 @@ const io=socketio(server);
 io.on('connection',(socket)=>{
      console.log('a user connected');
 
-       socket.on('from_client',()=>{
-        console.log("event comming  from  client ")
-       })
-
-    setInterval(()=>{
-        socket.emit('from_server');
-    },2000);
+     socket.on('msg_send',(data)=>{
+        console.log(data);
+        io.emit('msg_rcvd',data);
+     })
 })
 
 
